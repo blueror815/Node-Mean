@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/angle',
+	db: 'mongodb://TravisUser:TravisUser@ec2-54-144-250-149.compute-1.amazonaws.com:27017/travis-meanDB',
 	assets: {
 		lib: {
 			css: [
