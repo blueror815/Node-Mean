@@ -25,10 +25,11 @@
           templateUrl: 'modules/core/views/core.client.view.html',
           resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
         })
-        .state('app.home', {
-          url: '/home',
-          templateUrl: 'modules/core/views/home.client.view.html'
-        })
+        // .state('app.home', {
+        //   url: '/home',
+        //   templateUrl: 'modules/core/views/home.client.view.html'
+        // })
+
         //
         // CUSTOM RESOLVES
         //   Add your own resolves properties

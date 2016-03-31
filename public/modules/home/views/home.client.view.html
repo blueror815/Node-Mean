@@ -1,0 +1,293 @@
+<h3>My Workspace</h3>
+<!-- START row-->
+<div ng-controller="HomeController as home">
+	<div class="row" padding="true" style="">
+	    <div class="col-lg-5" style="height: 100%; padding: 30px;  border: 1px solid blue">
+	        <div class="panel widget">
+	            <div class="panel-body">
+	                <div class="text-right text-muted">
+	                   <em class="fa fa-gamepad fa-2x"></em>
+	                </div>
+	                <h3 class="mt0">99.999</h3>
+	                <p class="text-muted">Games played last month</p>
+	                <div class="progress progress-striped progress-xs">
+	                    <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="70" class="progress-bar progress-bar-warning progress-60">
+	                        <span class="sr-only">60% Complete</span>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-7" style="height: 100%; border: 1px solid blue;">
+	        <div class="row" style="height: 50%; ">
+	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px;">
+	            	<div class="panel panel-default">
+			            <div class="panel-heading">Area</div>
+			            <div class="panel-body">
+			               <div style="height: 180px" morris-area="" morris-data="home.chartdata" morris-options="home.areaOptions"></div>
+			            </div>
+			         </div>
+	            </div>
+
+	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px;">
+	            	<div class="panel panel-default">
+			            <div class="panel-heading">Bar</div>
+			            <div class="panel-body">
+			               <div morris-bar="" style="height: 180px" morris-data="home.chartdata" morris-options="home.barOptions"></div>
+			            </div>
+			         </div>
+	            </div>
+	        </div>
+	        <div class="row" style="height: 50%;">
+	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px">
+	            	<h4>Polar Area Chart</h4>
+	         		<div>
+			            <canvas polarchart="" options="home.polarOptions" data="home.polarData" height="180" responsive="true"></canvas>
+		         	</div>
+	            </div>
+
+	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px">
+		            <h4>Radar Chart</h4>
+		         	<div>
+			            <canvas radarchart="" options="home.radarOptions" data="home.radarData" height="180" responsive="true"></canvas>
+		         	</div>
+	            </div>
+	        </div>            
+	    </div>
+	</div>
+
+	<div class="row text-center" style="height: 50px; border: 1px solid blue" >
+		Stock Hacker goes here
+	</div>
+
+	<div class="row" padding="true" style="border: 1px solid blue;">
+	    <div class="col-lg-6" style="height: 100%; border: 1px solid blue;">
+	        <div class="row" style="height: 40%; border: 1px solid blue;">
+	        	<div class="panel-heading">Documents</div>
+	            <div class="panel-body">
+	               <uib-tabset cal>
+	                  	
+	                  	<uib-tab heading="Add" class="pull-right">
+	                  		<div>
+                     			<p>Queue progress:</p>
+		                     	<div style="" class="progress progress-xs">
+		                        	<div role="progressbar" ng-style="{ 'width': home.uploader.progress + '%' }" class="progress-bar"></div>
+		                     	</div>
+                  			</div>
+                  			<button type="button" ng-click="home.uploader.uploadAll()" ng-disabled="!home.uploader.getNotUploadedItems().length" class="btn btn-info btn-s">
+                     			<span class="icon-cloud-upload mr"></span>Upload all
+                     		</button>
+                  			<button type="button" ng-click="home.uploader.cancelAll()" ng-disabled="!home.uploader.isUploading" class="btn btn-warning btn-s">
+                     			<span class="icon-close mr"></span>Cancel all
+                     		</button>
+                  			<button type="button" ng-click="home.uploader.clearQueue()" ng-disabled="!home.uploader.queue.length" class="btn btn-danger btn-s">
+                     			<span class="icon-trash mr"></span>Remove all
+                     		</button>
+	                  	</uib-tab>
+	                  	<uib-tab heading="View" class="pull-right">
+	                  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+	                     	aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nul qui officia deserunt mollit anim id est laborum.
+	                    </uib-tab>
+	               	</uib-tabset>
+	            </div>
+        	</div>
+	        <div class="row" style="height: 60%; border: 1px solid blue;">
+		        <div class="col-lg-6" style="height: 100%; border: 1px solid blue">
+	        		<div class="panel-body">
+	                  	<h4 class="page-header mt0">Select files</h4>
+	                  	<div ng-show="home.uploader.isHTML5">
+		                     <!-- 3. nv-file-over uploader="link" over-class="className"-->
+	                     	<div nv-file-over="" uploader="home.uploader" over-class="bg-info" class="box-placeholder my-drop-zone">Base drop zone</div>
+		                     <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}"-->
+	                     	<div nv-file-drop="" uploader="home.uploader" options="{ url: '/foo' }">
+		                        <div nv-file-over="" uploader="home.uploader" over-class="bg-purple" class="box-placeholder my-drop-zone">Another drop zone with its own settings</div>
+	                     	</div>
+	                  	</div>
+	                  	<!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}"-->
+	                  	<hr/>
+	                  	<input filestyle="" type="file" data-button-text="Multiple" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="home.uploader" multiple="" class="form-control" />
+	                  	<br/>
+	                  	<input filestyle="" type="file" data-button-text="Single" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="home.uploader" class="form-control" />
+	               	</div>
+               	</div>
+               	<div class="col-lg-6" style="height: 100%; border: 1px solid blue">
+	           		<div class="panel">
+		               	<div class="panel-body">
+		                  	<p ng-if="home.uploader.queue.length" class="pull-right label label-info">Queue length: {{ home.uploader.queue.length }}</p>
+		                  	<h4 class="page-header mt0">Upload queue</h4>
+		                  	<p ng-if="!home.uploader.queue.length" class="lead text-center">No files in queue. Start adding some..</p>
+		                  	<div ng-if="home.uploader.queue.length">
+		                     	<table ng-if="home.uploader.queue.length" class="table">
+		                        	<thead>
+			                           	<tr>
+			                              	<th width="50%">Name</th>
+			                              	<th ng-show="home.uploader.isHTML5">Size</th>
+			                              	<th ng-show="home.uploader.isHTML5">Progress</th>
+			                              	<th>Status</th>
+			                              	<th>Actions</th>
+			                           	</tr>
+		                        	</thead>
+		                        	<tbody>
+		                           		<tr ng-repeat="item in home.uploader.queue">
+			                              	<td>
+			                                	<strong>{{ item.file.name }}</strong>
+			                              	</td>
+			                              	<td ng-show="home.uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+			                              	<td ng-show="home.uploader.isHTML5">
+			                                 	<div style="margin-bottom: 0;" class="progress progress-xs">
+			                                    	<div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+			                                 	</div>
+			                              	</td>
+			                              	<td class="text-center">
+			                                 	<span ng-show="item.isSuccess">
+				                                    <em class="fa fa-check fa-fw"></em>
+			                                 	</span>
+			                                 	<span ng-show="item.isCancel">
+			                                    	<em class="fa fa-ban-circle fa-fw"></em>
+			                                 	</span>
+			                                 	<span ng-show="item.isError">
+			                                    	<em class="fa fa-times fa-fw"></em>
+			                                 	</span>
+			                              	</td>
+			                              	<td nowrap="">
+			                                 	<button type="button" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-info btn-xs">
+			                                    	<span class="icon-cloud-upload mr"></span>Upload
+			                                    </button>
+			                                 	<button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs">
+			                                    	<span class="icon-close mr"></span>Cancel
+			                                    </button>
+			                                 	<button type="button" ng-click="item.remove()" class="btn btn-danger btn-xs">
+			                                    	<span class="icon-trash mr"></span>Remove
+			                                    </button>
+			                              	</td>
+		                           		</tr>
+		                        	</tbody>
+		                     	</table>
+		                  	</div>
+		               	</div>
+		            </div>
+               	</div>
+	        </div>            
+	    </div>
+
+	    <div class="col-lg-2" style="height: 100%; border: 1px solid blue;">
+	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+				<div class="panel panel-primary">
+		         	<div class="panel-heading">
+			            <div class="row">
+			               	<div class="col-xs-3">
+			                  	<em class="fa fa-comments fa-5x"></em>
+			               	</div>
+			               	<div class="col-xs-9 text-right">
+			                  	<div class="text-lg">26</div>
+			                  	<p class="m0">New Comments!</p>
+			               	</div>
+			            </div>
+		         	</div>
+		         	<a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+			            <span class="pull-left">View Details</span>
+			            <span class="pull-right">
+			               <em class="fa fa-chevron-circle-right"></em>
+			            </span>
+		         	</a>
+			         <!-- END panel-->
+		      	</div>
+	        </div>            
+
+	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+	        	<div class="panel panel-green">
+	               	<div class="panel-heading">
+	                  	<div class="row">
+	                     	<div class="col-xs-3">
+	                        	<em class="fa fa-tasks fa-5x"></em>
+	                     	</div>
+	                     	<div class="col-xs-9 text-right">
+		                        <div class="text-lg">12</div>
+		                        <p class="m0">New Tasks!</p>
+	                     	</div>
+	                  	</div>
+	               	</div>
+	               	<a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+	                  	<span class="pull-left">View Details</span>
+	                  	<span class="pull-right">
+	                     	<em class="fa fa-chevron-circle-right"></em>
+	                  	</span>
+	               	</a>
+	            </div>
+	        </div>            
+	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+        	 	<div class="panel panel-danger">
+                  	<div class="panel-heading">
+                     	<div class="row">
+	                        <div class="col-xs-3">
+	                           <em class="fa fa-support fa-5x"></em>
+	                        </div>
+	                        <div class="col-xs-9 text-right">
+	                           <div class="text-lg">13</div>
+	                           <p class="m0">Support Tickets!</p>
+	                        </div>
+                     	</div>
+                  	</div>
+                  	<a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+                     	<span class="pull-left">View Details</span>
+                     	<span class="pull-right">
+                        	<em class="fa fa-chevron-circle-right"></em>
+                     	</span>
+                  	</a>
+               	</div>
+	        </div>            
+	    </div>
+
+	    <div class="col-lg-4" style="height: 100%; border: 1px solid blue;">
+	        <div class="row" style="height: 10%; border: 1px solid blue; padding: 15px;">
+	        	<h3>Todo List
+				   <button ng-click="todo.clearAll()" class="pull-right btn btn-danger">Clear All Items</button>
+				   <br><small>Keeping track of tasks</small>
+				</h3>
+	        </div>            
+
+	        <div class="row" style="height: 90%; border: 1px solid blue; padding-left: 10px; padding-top: 20px;">
+				<div class="todo">
+				   <div class="">
+				      <div class="pr-lg">
+				         <form ng-submit="todo.addTodo(todo)" class="mb-xl">
+				            <div class="form-group">
+				               <input ng-trim="true" type="text" ng-model="todo.todo.title" placeholder="Task title.." required="required" class="form-control" />
+				            </div>
+				            <div class="form-group">
+				               <textarea ng-trim="true" ng-model="todo.todo.description" placeholder="Type a description.." rows="8" class="form-control"></textarea>
+				            </div>
+				            <button type="submit" class="btn btn-primary btn-block">{{todo.editingTodo ? 'Edit Todo' : 'Add Todo'}}</button>
+				         </form>
+				      </div>
+				   </div>
+				   <div class="col todo-item-list">
+				      <uib-accordion close-others="true">
+				         <uib-accordion-group ng-repeat="item in todo.items" ng-class="{'todo-complete': item.complete}" is-disabled="item.complete" class="todo-item">
+				            <uib-accordion-heading>
+				               <span ng-click="todo.removeTodo($index, $event)" class="close">×</span>
+				               <div class="inline checkbox c-checkbox">
+				                  <label ng-click="$event.stopPropagation()">
+				                     <input type="checkbox" ng-model="item.complete" id="{{'todo-item-'+$index}}" ng-disabled="todo.editingTodo" />
+				                     <span class="fa fa-check"></span>
+				                  </label>
+				               </div>
+				               <span ng-bind="item.todo.title" class="todo-title">Task title</span>
+				               <span ng-click="todo.editTodo($index, $event)" class="todo-edit fa fa-pencil"></span>
+				            </uib-accordion-heading>
+				            <p>
+				               <span ng-bind="item.todo.description"></span>
+				               <span ng-if="item.todo.description === ''" class="text-muted">No item description</span>
+				            </p>
+				         </uib-accordion-group>
+				      </uib-accordion>
+				      <p ng-if="todo.items.length &gt; 0" class="text-right">
+				         <span>{{ totalCompleted() }} Completed</span>-
+				         <span>{{ totalPending() }} Pending</span>
+				      </p>
+				   </div>
+				</div>	        
+	        </div>            
+	    </div>
+	</div>
+</div>

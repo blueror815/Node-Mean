@@ -9,3 +9,9 @@ exports.index = function(req, res) {
 		request: req
 	});
 };
+
+exports.welcome = function(req, res) {
+	res.render('welcome',{
+		request: req
+	});
+};
