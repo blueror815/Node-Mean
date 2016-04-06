@@ -65,12 +65,12 @@
                 $scope.loadButonText=angular.element(e.target).text();
                 $scope.feeds=res.data.responseData.feed.entries;
             });
-          }
+          };
 
           $scope.clearText=function()
           {
             $scope.filterText = "";
-          }
+          };
             
           function saveToLocalStorage(feeds)
           {
@@ -87,7 +87,7 @@
             console.log("retrieving localStorage...");
             try
             {
-              $scope.allFeeds = JSON.parse(localStorage["feeds"]);
+              $scope.allFeeds = JSON.parse(localStorage['feeds']);
               console.log($scope.allFeeds.length);
 
               // console.log(JSON.stringify($scope.allFeeds));
@@ -136,8 +136,8 @@
               return;
             }
             var titleText = prompt("Please enter the feed title text", "");
-            if (titleText != null) {
-              f = new feed(titleText, $scope.feedSrc);
+            if (titleText !== null) {
+              f = new Feed(titleText, $scope.feedSrc);
               $scope.allFeeds.push(f);
               saveToLocalStorage($scope.allFeeds);
             }
