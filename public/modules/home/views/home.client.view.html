@@ -53,15 +53,15 @@
 						</div>
 				  	</div>
 				</div>
-
-				<ul class="unstyled">
-					<span class="badge badge-warning top-buffer" ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} Items</span>
-					<li ng-repeat="feed in feeds | filter:filterText" style="">
-						<h5><a href="{{feed.link}}" target="_blank"><span class="titleText" >{{feed.title}}</span></a><span class="small">&nbsp;&nbsp;&nbsp;&nbsp;{{feed.publishedDate}}</span></h5>
-						<p class="text-left">{{feed.contentSnippet}}</p>
-					</li>
-				</ul>        
-
+				<div ui-scroll-viewport="" style="height:400px; overflow-y: auto;">
+					<ul class="unstyled">
+						<span class="badge badge-warning top-buffer" ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} Items</span>
+						<li ng-repeat="feed in feeds | filter:filterText" style="">
+							<h5><a href="{{feed.link}}" target="_blank"><span class="titleText" >{{feed.title}}</span></a><span class="small">&nbsp;&nbsp;&nbsp;&nbsp;{{feed.publishedDate}}</span></h5>
+							<p class="text-left">{{feed.contentSnippet}}</p>
+						</li>
+					</ul>        
+				</div>
 	        </div>
 	        <!-- rss feed -->
 
