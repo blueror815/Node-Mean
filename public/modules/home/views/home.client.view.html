@@ -2,25 +2,74 @@
 <!-- START row-->
 <div ng-controller="HomeController as home">
 	<div class="row" padding="true" style="">
-	    <div class="col-lg-5" style="height: 100%; padding: 30px;  border: 1px solid blue">
-	        <div class="panel widget">
-	            <div class="panel-body">
-	                <div class="text-right text-muted">
-	                   <em class="fa fa-gamepad fa-2x"></em>
-	                </div>
-	                <h3 class="mt0">99.999</h3>
-	                <p class="text-muted">Games played last month</p>
-	                <div class="progress progress-striped progress-xs">
-	                    <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="70" class="progress-bar progress-bar-warning progress-60">
-	                        <span class="sr-only">60% Complete</span>
-	                    </div>
-	                </div>
-	            </div>
+	    <div class="col-lg-5" style="">
+	        <!-- rss feed -->
+	        <div class="panel widget" style="height: 600px;">
+
+				<h4>RSS Feed Reader</h4>
+
+
+				<div class = "row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="input-group">
+						  
+						 	<input type="text" class="form-control" placeholder="{{phMessage}}" data-ng-model="feedSrc">
+
+				         	<div class="input-group-btn">
+					        	<div uib-dropdown="dropdown" class="btn-group">
+					            	<button uib-dropdown-toggle="" class="btn btn-info dropdown-toggle">
+					            		{{currentButtonText}}&nbsp;&nbsp;&nbsp;&nbsp; <b class="caret"></b>
+					            	</button>
+
+					            	<ul role="menu" class="dropdown-menu animated bounce">
+										<li ng-repeat="feed in allFeeds">
+											<a href="#" ng-click="loadFeed($event,feed.url);">{{feed.titleText}}</a>
+										</li>
+					            	</ul>
+					         	</div>
+				         	</div>
+
+							<div class="input-group-btn">
+								<button ng-click="saveFeed()" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Save Feed To Your List" type="button"><em class="fa fa-download" /></button>
+							</div>
+
+							<div class="input-group-btn">
+								<button ng-click="removeAllFeedsFromLocalStorage()" class="btn btn-default" type="button"><em class="fa fa-close" /></button>
+							</div>
+
+						</div>
+				  	</div>
+				</div>
+				
+				<div class = "row">
+					<div class="col-md-10 col-md-offset-1" ng-show="feeds.length > 0">
+						<div class="input-group">
+						  <input class="form-control" type="text" placeholder="Search" data-ng-model="filterText" />
+						  <div class="input-group-btn">
+							<button type="button" class="btn btn-default" data-ng-click="clearText()">
+								<em class="fa fa-close"></em>
+							</button>
+						  </div>
+						</div>
+				  	</div>
+				</div>
+
+				<ul class="unstyled">
+					<span class="badge badge-warning top-buffer" ng-show="feeds.length > 0">{{(feeds | filter:filterText).length}} Items</span>
+					<li ng-repeat="feed in feeds | filter:filterText" style="">
+						<h5><a href="{{feed.link}}" target="_blank"><span class="titleText" >{{feed.title}}</span></a><span class="small">&nbsp;&nbsp;&nbsp;&nbsp;{{feed.publishedDate}}</span></h5>
+						<p class="text-left">{{feed.contentSnippet}}</p>
+					</li>
+				</ul>        
+
 	        </div>
+	        <!-- rss feed -->
+
 	    </div>
-	    <div class="col-lg-7" style="height: 100%; border: 1px solid blue;">
+
+	    <div class="col-lg-7" style="height: 100%;">
 	        <div class="row" style="height: 50%; ">
-	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px;">
+	            <div class="col-lg-6" style="height: 100%;">
 	            	<div class="panel panel-default">
 			            <div class="panel-heading">Area</div>
 			            <div class="panel-body">
@@ -29,7 +78,7 @@
 			         </div>
 	            </div>
 
-	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px;">
+	            <div class="col-lg-6" style="height: 100%;">
 	            	<div class="panel panel-default">
 			            <div class="panel-heading">Bar</div>
 			            <div class="panel-body">
@@ -39,14 +88,14 @@
 	            </div>
 	        </div>
 	        <div class="row" style="height: 50%;">
-	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px">
+	            <div class="col-lg-6" style="height: 100%;">
 	            	<h4>Polar Area Chart</h4>
 	         		<div>
 			            <canvas polarchart="" options="home.polarOptions" data="home.polarData" height="180" responsive="true"></canvas>
 		         	</div>
 	            </div>
 
-	            <div class="col-lg-6" style="height: 100%; border: 1px solid blue; padding: 20px">
+	            <div class="col-lg-6" style="height: 100%;">
 		            <h4>Radar Chart</h4>
 		         	<div>
 			            <canvas radarchart="" options="home.radarOptions" data="home.radarData" height="180" responsive="true"></canvas>
@@ -56,13 +105,28 @@
 	    </div>
 	</div>
 
-	<div class="row text-center" style="height: 50px; border: 1px solid blue" >
-		Stock Hacker goes here
+	<div class="row text-center" style="height: 50px;" >
+
+		<marquee class="sticker" style="margin-top: 10px;">
+	    	<span class="clstsd">AA 12.45  <em class="fa fa-caret-down"></em>-1</span>
+	        <span class="clstsu">AAA 12.45  <em class="fa fa-caret-up"></em>+.50</span>
+	        <span class="clstsu">B 12.45  <em class="fa fa-caret-up"></em>+.33</span>
+	        <span class="clstsd">BB 12.45   <em class="fa fa-caret-down"></em>-10</span>
+	        <span class="clstsu">BBB 12.45  <em class="fa fa-caret-up"></em>+.1</span>
+	        <span class="clstsu">C 12.45    <em class="fa fa-caret-up"></em>+1</span>
+	        <span class="clstsd">DDD 12.45  <em class="fa fa-caret-down"></em>-1</span>
+	        <span class="clstsu">EE 12.45   <em class="fa fa-caret-up"></em>+1</span>
+	        <span class="clstsu">FFFF 12.45 <em class="fa fa-caret-up"></em>+1</span>
+	        <span class="clstsd">G 66.32525 <em class="fa fa-caret-down"></em>-.23</span>
+	        <span class="clstsu">A 12.45    <em class="fa fa-caret-up"></em>+1</span>
+	        <span class="clstsu">Dria 78.34 <em class="fa fa-caret-up"></em>+56</span>
+		</marquee>
+
 	</div>
 
-	<div class="row" padding="true" style="border: 1px solid blue;">
-	    <div class="col-lg-6" style="height: 100%; border: 1px solid blue;">
-	        <div class="row" style="height: 40%; border: 1px solid blue;">
+	<div class="row" padding="true" style="">
+	    <div class="col-lg-6" style="height: 100%;">
+	        <div class="row" style="height: 40%;">
 	        	<div class="panel-heading">Documents</div>
 	            <div class="panel-body">
 	               <uib-tabset cal>
@@ -91,8 +155,8 @@
 	               	</uib-tabset>
 	            </div>
         	</div>
-	        <div class="row" style="height: 60%; border: 1px solid blue;">
-		        <div class="col-lg-6" style="height: 100%; border: 1px solid blue">
+	        <div class="row" style="height: 60%;">
+		        <div class="col-lg-6" style="height: 100%;">
 	        		<div class="panel-body">
 	                  	<h4 class="page-header mt0">Select files</h4>
 	                  	<div ng-show="home.uploader.isHTML5">
@@ -110,7 +174,7 @@
 	                  	<input filestyle="" type="file" data-button-text="Single" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="home.uploader" class="form-control" />
 	               	</div>
                	</div>
-               	<div class="col-lg-6" style="height: 100%; border: 1px solid blue">
+               	<div class="col-lg-6" style="height: 100%;">
 	           		<div class="panel">
 		               	<div class="panel-body">
 		                  	<p ng-if="home.uploader.queue.length" class="pull-right label label-info">Queue length: {{ home.uploader.queue.length }}</p>
@@ -170,8 +234,8 @@
 	        </div>            
 	    </div>
 
-	    <div class="col-lg-2" style="height: 100%; border: 1px solid blue;">
-	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+	    <div class="col-lg-2" style="height: 100%;">
+	        <div class="row" style="height: 33.33%; padding-top: 30px">
 				<div class="panel panel-primary">
 		         	<div class="panel-heading">
 			            <div class="row">
@@ -194,7 +258,7 @@
 		      	</div>
 	        </div>            
 
-	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+	        <div class="row" style="height: 33.33%; padding-top: 30px">
 	        	<div class="panel panel-green">
 	               	<div class="panel-heading">
 	                  	<div class="row">
@@ -215,7 +279,7 @@
 	               	</a>
 	            </div>
 	        </div>            
-	        <div class="row" style="height: 33.33%; border: 1px solid blue; padding-top: 30px">
+	        <div class="row" style="height: 33.33%; padding-top: 30px">
         	 	<div class="panel panel-danger">
                   	<div class="panel-heading">
                      	<div class="row">
@@ -238,15 +302,15 @@
 	        </div>            
 	    </div>
 
-	    <div class="col-lg-4" style="height: 100%; border: 1px solid blue;">
-	        <div class="row" style="height: 10%; border: 1px solid blue; padding: 15px;">
+	    <div class="col-lg-4" style="height: 100%;">
+	        <div class="row" style="height: 10%; padding: 15px;">
 	        	<h3>Todo List
 				   <button ng-click="todo.clearAll()" class="pull-right btn btn-danger">Clear All Items</button>
 				   <br><small>Keeping track of tasks</small>
 				</h3>
 	        </div>            
 
-	        <div class="row" style="height: 90%; border: 1px solid blue; padding-left: 10px; padding-top: 20px;">
+	        <div class="row" style="height: 90%; padding-left: 10px; padding-top: 20px;">
 				<div class="todo">
 				   <div class="">
 				      <div class="pr-lg">

@@ -14994,6 +14994,33 @@ ul[rn-carousel] {
     content: '5 .column.size-1-5';
   }
 }
+.clstsu {
+  color: green;
+  cursor: pointer;
+  margin: 0;
+  padding-bottom: 2px;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.clstsd {
+  color: red;
+  cursor: pointer;
+  margin: 0;
+  padding-bottom: 2px;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.sticker {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  animation: marquee 50s linear infinite;
+}
+.sticker:hover {
+  animation-play-state: paused;
+}
 /* ========================================================================
    Component: chart-flot.less
  ========================================================================== */
@@ -18270,6 +18297,9 @@ fieldset[disabled] flatdoc .button.active {
 flatdoc .button .badge {
   color: #23b7e5;
   background-color: #fff;
+}
+.col-lg-33 {
+  width: 33.33%;
 }
 .preloader-progress {
   background-image: url('/modules/preloader/img/preloader.empty.png');
