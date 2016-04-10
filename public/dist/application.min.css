@@ -7753,7 +7753,7 @@ _:-ms-lang(x),
   /* fixes chrome jump */
   margin-bottom: 0;
   border-radius: 0;
-  background-color: #fff;
+  background-color: black;
   z-index: 1050;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -7852,7 +7852,7 @@ _:-ms-lang(x),
 }
 .nav-wrapper {
   padding: 0 15px;
-  background-color: transparent;
+  background-color: black;
 }
 .nav-wrapper .nav.navbar-nav {
   float: left;
@@ -7919,7 +7919,7 @@ _:-ms-lang(x),
 @media only screen and (min-width: 768px) {
   .topnavbar {
     border: 0;
-    background-color: #23b7e5;
+    background-color: black;
     background-image: -webkit-linear-gradient(left, #23b7e5 0%, #51c6ea 100%);
     background-image: -o-linear-gradient(left, #23b7e5 0%, #51c6ea 100%);
     background-image: linear-gradient(to right, #23b7e5 0%, #51c6ea 100%);
@@ -8082,9 +8082,6 @@ _:-ms-lang(x),
 .sidebar > .nav > li.active > a > em,
 .sidebar > .nav > li.open > a > em {
   color: #23b7e5;
-}
-.sidebar > .nav > li.active {
-  border-left-color: #23b7e5;
 }
 .sidebar > .nav .label {
   display: block;
@@ -15020,6 +15017,11 @@ ul[rn-carousel] {
 }
 .sticker:hover {
   animation-play-state: paused;
+}
+#ticker-wrapper {
+  background-color: black;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 /* ========================================================================
    Component: chart-flot.less
